@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('purchase_items', function (Blueprint $table) {
             $table->id();
+            $table->string("number");
             $table->foreignIdFor(\App\Models\Detail::class)
                 ->constrained()
                 ->cascadeOnUpdate()
@@ -26,6 +27,7 @@ return new class extends Migration
                 ->cascadeOnUpdate()
                 ->cascadeOnDelete();
             $table->integer("price");
+            $table->integer("count");
             $table->text("description");
             $table->timestamps();
         });

@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->string("number");
             $table->integer("count");
-            $table->decimal("price");
             $table->text("description");
             $table->foreignIdFor(\App\Models\Manufacturer::class)
                 ->constrained()
