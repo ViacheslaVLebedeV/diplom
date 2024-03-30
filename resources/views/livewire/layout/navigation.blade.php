@@ -27,7 +27,6 @@ new class extends Component
                         <x-application-logo class="block h-9 w-auto fill-current text-gray-800 dark:text-gray-200" />
                     </a>
                 </div>
-    <x-button primary>sdfsdf</x-button>
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" wire:navigate>
@@ -35,6 +34,9 @@ new class extends Component
                     </x-nav-link>
                     <x-nav-link :href="route('detail')" :active="request()->routeIs('detail')" wire:navigate>
                         Деталь
+                    </x-nav-link>
+                    <x-nav-link :href="route('turbine')" :active="request()->routeIs('turbine')" wire:navigate>
+                        Турбокомпрессор
                     </x-nav-link>
                 </div>
             </div>
