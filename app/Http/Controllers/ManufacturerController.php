@@ -12,7 +12,7 @@ class ManufacturerController extends Controller
      */
     public function index()
     {
-        //
+        return Manufacturer::all();
     }
 
     /**
@@ -36,7 +36,7 @@ class ManufacturerController extends Controller
      */
     public function show(Manufacturer $manufacturer)
     {
-        //
+        return $manufacturer;
     }
 
     /**

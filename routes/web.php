@@ -17,3 +17,10 @@ require __DIR__.'/auth.php';
 Route::view('test', 'ui');
 Route::view('turbine', 'turbine')->name('turbine');
 Route::view('detail', 'detail')->name('detail');
+
+
+
+Route::resource("turbines", \App\Http\Controllers\TurbineController::class);
+Route::resource("manufacturers", \App\Http\Controllers\ManufacturerController::class);
+
+

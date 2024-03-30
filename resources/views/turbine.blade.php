@@ -39,4 +39,8 @@
             </div>
         </div>
     </div>
+
+    @foreach ($data as $turb)
+        <x-button wire:click="cancel" label="{{$turb->number}}" flat negative/>
+    @endforeach
 </x-app-layout>

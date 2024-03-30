@@ -12,7 +12,9 @@ class TurbineController extends Controller
      */
     public function index()
     {
-        //
+        return view("turbine", [
+            'data' => Turbine::all()
+        ]);
     }
 
     /**
@@ -20,7 +22,7 @@ class TurbineController extends Controller
      */
     public function create()
     {
-        //
+        return "Это страница создания";
     }
 
     /**
@@ -36,7 +38,7 @@ class TurbineController extends Controller
      */
     public function show(Turbine $turbine)
     {
-        //
+        return $turbine;
     }
 
     /**
