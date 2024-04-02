@@ -4,15 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Models\Turbine;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class TurbineController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(): View
     {
-        return view("turbine", [
+        return view("turbines.index", [
             'data' => Turbine::all()
         ]);
     }
@@ -20,9 +21,9 @@ class TurbineController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(): View
     {
-        return "Это страница создания";
+        return view('turbines.create');
     }
 
     /**

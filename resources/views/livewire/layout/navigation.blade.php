@@ -30,13 +30,19 @@ new class extends Component
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" wire:navigate>
-                        {{ __('Dashboard') }}
+                        {{ __('Главная') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('detail')" :active="request()->routeIs('detail')" wire:navigate>
-                        Деталь
+                    <x-nav-link :href="route('details.index')" :active="request()->routeIs('details.index')" wire:navigate>
+                        Детали
                     </x-nav-link>
-                    <x-nav-link :href="route('turbine')" :active="request()->routeIs('turbine')" wire:navigate>
-                        Турбокомпрессор
+                    <x-nav-link :href="route('turbines.index')" :active="request()->routeIs('turbines.index')" wire:navigate>
+                        Турбокомпрессоры
+                    </x-nav-link>
+                    <x-nav-link :href="route('clients.index')" :active="request()->routeIs('clients.index')" wire:navigate>
+                        Клиенты
+                    </x-nav-link>
+                    <x-nav-link :href="route('purchases.index')" :active="request()->routeIs('purchases.index')" wire:navigate>
+                        Закупки
                     </x-nav-link>
                 </div>
             </div>
