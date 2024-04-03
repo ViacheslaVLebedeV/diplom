@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreDetailRequest;
 use App\Models\Detail;
+use App\Models\Manufacturer;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\View\View;
 
 class DetailController extends Controller
@@ -14,7 +17,9 @@ class DetailController extends Controller
      */
     public function index(): View
     {
-        return view('details.index');
+        return view('details.index', [
+            "details" => Detail::query()->orderBy("number")->get()
+        ]);
     }
 
     /**
@@ -28,9 +33,22 @@ class DetailController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
-        //
+        //dd($request);
+        $validated = $request->validate([
+            "number" => ['required'],
+            "description" => ['required'],
+            "manufacturer_id" => ['required'],
+            "detail_type_id" => ['required'],
+        ]);
+
+       Detail::create([
+           ...$validated,
+           "description" => Crypt::encryptString($validated["description"]),
+           "count" => 0,
+       ]);
+       return redirect()->back();
     }
 
     /**

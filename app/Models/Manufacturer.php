@@ -17,4 +17,9 @@ class Manufacturer extends Model
     {
         return $this->hasMany(Turbine::class);
     }
+
+    public function details(): HasMany
+    {
+        return $this->hasMany(Detail::class);
+    }
 }
