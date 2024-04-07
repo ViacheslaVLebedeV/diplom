@@ -19,11 +19,11 @@ class Client extends Model
 
     public function partRepairs(): HasMany
     {
-        return $this->hasMany(PartRepair::class, 'client_id');
+        return $this->hasMany(PartRepair::class);
     }
 
     public function turbineRepairs(): HasMany
     {
-        return $this->hasMany(TurbineRepair::class, 'client_id');
+        return $this->hasMany(TurbineRepair::class);
     }
 }
