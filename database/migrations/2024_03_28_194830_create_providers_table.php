@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('providers', function (Blueprint $table) {
             $table->id();
             $table->string("name");
-            $table->string("sku");
-            $table->text("description");
+            $table->string("sku")->unique();
+            $table->text("note")->nullable();
             $table->timestamps();
         });
     }

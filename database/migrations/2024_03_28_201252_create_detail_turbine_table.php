@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Detail;
+use App\Models\Turbine;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -13,15 +15,15 @@ return new class extends Migration
     {
         Schema::create('detail_turbine', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(\App\Models\Detail::class)
+            $table->foreignIdFor(Detail::class)
                 ->constrained()
                 ->cascadeOnUpdate()
                 ->cascadeOnDelete();
-            $table->foreignIdFor(\App\Models\Turbine::class)
+            $table->foreignIdFor(Turbine::class)
                 ->constrained()
                 ->cascadeOnUpdate()
                 ->cascadeOnDelete();
-            $table->text("description");
+            $table->text("note")->nullable();
             $table->timestamps();
         });
     }

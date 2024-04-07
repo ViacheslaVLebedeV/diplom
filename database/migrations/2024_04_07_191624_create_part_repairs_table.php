@@ -1,9 +1,7 @@
 <?php
 
-use App\Models\Detail;
-use App\Models\Manufacturer;
-use App\Models\Provider;
-use App\Models\PurchaseStatus;
+use App\Models\Client;
+use App\Models\OrderStatus;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -15,24 +13,24 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('purchase_items', function (Blueprint $table) {
+        Schema::create('part_repairs', function (Blueprint $table) {
             $table->id();
             $table->string("number")->unique();
-            $table->foreignIdFor(Detail::class)
-                ->constrained()
-                ->cascadeOnUpdate()
-                ->cascadeOnDelete();
-            $table->foreignIdFor(Provider::class)
-                ->constrained()
-                ->cascadeOnUpdate()
-                ->cascadeOnDelete();
-            $table->foreignIdFor(PurchaseStatus::class)
-                ->constrained()
-                ->cascadeOnUpdate()
-                ->cascadeOnDelete();
             $table->integer("price")->default(0);
-            $table->integer("count");
+            $table->timestamp("deadline");
             $table->text("note")->nullable();
+            $table->foreignIdFor(\App\Models\Detail::class)
+                ->constrained()
+                ->cascadeOnUpdate()
+                ->cascadeOnDelete();
+            $table->foreignIdFor(Client::class)
+                ->constrained()
+                ->cascadeOnUpdate()
+                ->cascadeOnDelete();
+            $table->foreignIdFor(OrderStatus::class)
+                ->constrained()
+                ->cascadeOnUpdate()
+                ->cascadeOnDelete();
             $table->timestamps();
         });
     }
@@ -42,6 +40,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('purchase_items');
+        Schema::dropIfExists('part_repairs');
     }
 };

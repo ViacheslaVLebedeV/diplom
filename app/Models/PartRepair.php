@@ -6,14 +6,16 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class PurchaseItem extends Model
+class PartRepair extends Model
 {
     protected $fillable = [
-        'detail_id',
-        'manufacturer_id',
-        'purchase_status_id',
+        'number',
         'price',
+        'deadline',
         'note',
+        'detail_id',
+        'client_id',
+        'order_status_id',
     ];
 
     public function detail(): BelongsTo
@@ -21,15 +23,13 @@ class PurchaseItem extends Model
         return $this->belongsTo(Detail::class);
     }
 
-    public function provider(): BelongsTo
+    public function client(): BelongsTo
     {
-        return $this->belongsTo(Provider::class);
+        return $this->belongsTo(Client::class);
     }
 
-    public function purchaseStatus(): BelongsTo
+    public function orderStatus(): BelongsTo
     {
-        return $this->belongsTo(PurchaseStatus::class);
+        return $this->belongsTo(OrderStatus::class);
     }
-
-
 }

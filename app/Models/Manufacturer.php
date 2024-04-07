@@ -9,8 +9,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Manufacturer extends Model
 {
     protected $fillable = [
-        'name',
-        'description'
+        'name', 'note'
     ];
 
     public function turbines(): HasMany
@@ -22,4 +21,6 @@ class Manufacturer extends Model
     {
         return $this->hasMany(Detail::class);
     }
+
+
 }
