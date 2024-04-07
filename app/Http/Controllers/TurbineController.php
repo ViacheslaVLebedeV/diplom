@@ -11,11 +11,9 @@ class TurbineController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(): View
+    public function index()
     {
-        return view("turbines.index", [
-            'data' => Turbine::all()
-        ]);
+
     }
 
     /**

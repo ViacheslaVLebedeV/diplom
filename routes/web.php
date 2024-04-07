@@ -27,7 +27,7 @@ Route::view('ui', 'ui');
 Route::resource("clients", ClientController::class)
     ->only('index', 'store', 'create');
 Route::resource("turbines", TurbineController::class)
-    ->only('index', 'store', 'create');
+    ->only('index', 'store', 'create', 'show');
 Route::resource("details", DetailController::class)
     ->only('index', 'store', 'create');
 Route::resource("purchases", PurchaseItemController::class)

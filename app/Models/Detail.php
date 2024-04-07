@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Detail extends Model
@@ -37,5 +38,10 @@ class Detail extends Model
     public function partRepairs(): HasMany
     {
         return $this->hasMany(PartRepair::class, 'detail_id');
+    }
+
+    public function turbines(): BelongsToMany
+    {
+        return $this->belongsToMany(Turbine::class)->withPivot(['note']);
     }
 }
