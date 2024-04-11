@@ -69,7 +69,7 @@
                                 <x-td>{{ $detail->detailType->name }}</x-td>
                                 <x-td>{{ $detail->count }}</x-td>
                                 <x-td>{{ $detail->price }}</x-td>
-                                <x-td>{{ Crypt::decryptString($detail->description) }}</x-td>
+                                <x-td>{{ $detail->note }}</x-td>
                             </tr>
                         @endforeach
                     </x-slot:tbody>
