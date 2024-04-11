@@ -15,7 +15,7 @@ class DetailController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(): View
+    public function index(Request $request)
     {
         return view('details.index', [
             "details" => Detail::query()->orderBy("number")->get()

@@ -28,7 +28,13 @@ class OrderStatusController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            "name" => ['required']
+        ]);
+
+        OrderStatus::create($validated);
+
+        return redirect()->back();
     }
 
     /**
@@ -60,6 +66,7 @@ class OrderStatusController extends Controller
      */
     public function destroy(OrderStatus $orderStatus)
     {
-        //
+        $orderStatus->delete();
+        return redirect()->back();
     }
 }

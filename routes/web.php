@@ -3,9 +3,12 @@
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\DetailController;
 use App\Http\Controllers\ManufacturerController;
+use App\Http\Controllers\OrderStatusController;
 use App\Http\Controllers\PurchaseItemController;
+use App\Models\Manufacturer;
+use App\Models\OrderStatus;
 use Illuminate\Support\Facades\Route;
-use \App\Http\Controllers\TurbineController;
+use App\Http\Controllers\TurbineController;
 use Illuminate\Support\Facades\App;
 
 
@@ -24,29 +27,19 @@ require __DIR__.'/auth.php';
 Route::view('ui', 'ui');
 
 // ресурсы для работы контроллеров всех начальных ссылок
-Route::resource("clients", ClientController::class)
-    ->only('index', 'store', 'create');
-Route::resource("turbines", TurbineController::class)
-    ->only('index', 'store', 'create', 'show');
-Route::resource("details", DetailController::class)
-    ->only('index', 'store', 'create');
-Route::resource("purchases", PurchaseItemController::class)
-    ->only('index', 'store', 'create');
-
-
+Route::resource("clients", ClientController::class);
+Route::resource("turbines", TurbineController::class);
+Route::resource("details", DetailController::class);
+Route::resource("purchases", PurchaseItemController::class);
 Route::resource("manufacturers", ManufacturerController::class);
+Route::resource("order-statuses", OrderStatusController::class);
 
 
-Route::get("/pdf", function () {
-    $pdf = App::make('dompdf.wrapper');
+// Словари
+Route::view("dictonaries", "dictonaries", [
+    "order_statuses" => OrderStatus::simplePaginate(5),
+    "manufacturers" => Manufacturer::all()
+])->name("dictonaries");
 
-    $pdf->loadHTML('
-        <h2>Test</h2>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum laborum perspiciatis ullam enim nostrum vel, impedit dolor officiis illum? Aliquam totam aliquid dicta dolorum molestias nulla laborum debitis doloremque ducimus.</p>
-        <p>Thank you</p>
-    ');
-
-    return $pdf->download("123.pdf");
-});
 
 
