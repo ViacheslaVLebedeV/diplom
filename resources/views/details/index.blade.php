@@ -5,6 +5,8 @@
         </h2>
     </x-slot>
 
+    <x-notifications position="top-right" />
+
     <div class="py-12">
         <div class="max-w-7xl mx-auto space-y-6 sm:px-6 lg:px-8">
 
@@ -43,7 +45,6 @@
                     </div>
                 </form>
             </x-card>
-
 
 
             <x-card title="Все детали">
@@ -89,7 +90,7 @@
                         <x-th>Тип детали</x-th>
                         <x-th>Количество (шт.)</x-th>
                         <x-th>Стоимость (руб.)</x-th>
-                        <x-th>Дополнительно</x-th>
+                        <x-th>Описание</x-th>
                         <x-th>Действия</x-th>
                     </x-slot:thead>
                     <x-slot:tbody>

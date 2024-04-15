@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Client;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
@@ -13,7 +14,10 @@ class ClientController extends Controller
      */
     public function index():View
     {
-        return view('clients.index');
+        return view('clients.index', [
+                "clients" => Client::query()->orderBy("lastname")->get()
+            ]
+        );
     }
 
     /**
@@ -27,9 +31,22 @@ class ClientController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request):RedirectResponse
     {
-        //
+        $validated = $request->validate([
+            "lastname" => ['required'],
+            "firstname" => ['required'],
+            "middlename" => ['nullable'],
+            "phone" => ['nullable'],
+            "email" => ['nullable'],
+            "note" => ['nullable'],
+        ]);
+
+        Client::create([
+            ...$validated
+        ]);
+
+        return redirect()->back();
     }
 
     /**

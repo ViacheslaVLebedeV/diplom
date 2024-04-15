@@ -12,7 +12,10 @@ class TurbineRepairController extends Controller
      */
     public function index()
     {
-        //
+        return view('turbine-repairs.index', [
+                "number" => TurbineRepair::query()->orderBy("number")->get()
+            ]
+        );
     }
 
     /**

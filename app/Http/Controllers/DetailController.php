@@ -19,7 +19,8 @@ class DetailController extends Controller
     {
         return view('details.index', [
             "details" => Detail::query()->orderBy("number")->get()
-        ]);
+            ]
+        );
     }
 
     /**
@@ -48,6 +49,7 @@ class DetailController extends Controller
            "description" => Crypt::encryptString($validated["description"]),
            "count" => 0,
        ]);
+
        return redirect()->back();
     }
 

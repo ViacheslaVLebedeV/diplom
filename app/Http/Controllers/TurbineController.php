@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Turbine;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
@@ -13,7 +14,10 @@ class TurbineController extends Controller
      */
     public function index()
     {
-
+        return view ('turbines.index', [
+            "turbines" => Turbine::query()->orderBy("number")->get()
+            ]
+        );
     }
 
     /**
@@ -27,9 +31,18 @@ class TurbineController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request):RedirectResponse
     {
-        //
+        //dd($request);
+        $validated = $request->validate([
+                "number" => ['required'],
+                "manufacturer_id" => ['required'],
+            ]);
+        Turbine::create([
+            ...$validated
+        ]);
+
+        return redirect()->back();
     }
 
     /**

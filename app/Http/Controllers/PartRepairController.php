@@ -12,7 +12,10 @@ class PartRepairController extends Controller
      */
     public function index()
     {
-        //
+        return view('part-repairs.index', [
+                "number" => PartRepair::query()->orderBy("number")->get()
+            ]
+        );
     }
 
     /**
