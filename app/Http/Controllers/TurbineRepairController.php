@@ -30,8 +30,10 @@ class TurbineRepairController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request):RedirectResponse
+    public function store(Request $request): RedirectResponse
     {
+
+
         $validated = $request->validate([
             "number" => ['nullable'],
             "price" => ['nullable'],
@@ -44,13 +46,20 @@ class TurbineRepairController extends Controller
 
         //dd($validated);
 
+        $number = $this->generateOrderNumber(1, 2);
+
         TurbineRepair::create([
             ...$validated,
-            "number" => "100100100",
+            "number" => $number,
             ]
         );
 
         return redirect()->back();
+    }
+
+    public function generateOrderNumber($date, $id)
+    {
+        return $date + $id;
     }
 
     /**
@@ -84,4 +93,6 @@ class TurbineRepairController extends Controller
     {
         //
     }
+
+
 }

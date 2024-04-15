@@ -39,14 +39,13 @@ class DetailController extends Controller
         //dd($request);
         $validated = $request->validate([
             "number" => ['required'],
-            "description" => ['nullable'],
+            "note" => ['nullable'],
             "manufacturer_id" => ['required'],
             "detail_type_id" => ['required'],
         ]);
 
        Detail::create([
            ...$validated,
-           "description" => Crypt::encryptString($validated["description"]),
            "count" => 0,
        ]);
 

@@ -21,6 +21,10 @@ class TurbineRepair extends Model
         'order_status_id',
     ];
 
+    protected $casts = [
+        'deadline' => 'datetime'
+    ];
+
     public function turbine(): BelongsTo
     {
         return $this->belongsTo(Turbine::class);

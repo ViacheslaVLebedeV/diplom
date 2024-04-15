@@ -18,9 +18,10 @@
                                  name="price"
                                  placeholder="Пример: 10000 руб."/>
                     </div>
-                    @csrf
+
                     <div class="col-span-2">
                         <x-datetime-picker
+                            name="deadline"
                             label="Крайний срок"
                             placeholder="Пример: 16.04.2024 10:00"
                             parse-format="DD-MM-YYYY HH:mm"
@@ -44,6 +45,7 @@
                             :options="\App\Models\Client::all()"
                             option-label="lastname"
                             option-value="id"
+                            option-description="firstname"
                             label="Клиент"
                             placeholder="Выбрать клиента"/>
                     </div>
@@ -59,7 +61,7 @@
                     </div>
 
                     <div class="col-span-4">
-                        <x-textarea name="description" label="Дополнительная информация по заказу" placeholder="Примечание"/>
+                        <x-textarea name="note" label="Дополнительная информация по заказу" placeholder="Примечание"/>
                     </div>
                     <div class="col-span-6">
                         <x-button type="submit" label="Создать заказ" primary/>

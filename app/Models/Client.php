@@ -17,6 +17,8 @@ class Client extends Model
        'note',
     ];
 
+
+
     public function partRepairs(): HasMany
     {
         return $this->hasMany(PartRepair::class);
@@ -25,5 +27,10 @@ class Client extends Model
     public function turbineRepairs(): HasMany
     {
         return $this->hasMany(TurbineRepair::class);
+    }
+
+    public function fullname()
+    {
+        return "TEST";
     }
 }
