@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\TurbineRepair;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 class TurbineRepairController extends Controller
@@ -13,7 +14,7 @@ class TurbineRepairController extends Controller
     public function index()
     {
         return view('turbine-repairs.index', [
-                "number" => TurbineRepair::query()->orderBy("number")->get()
+                "turbine_repairs" => TurbineRepair::query()->orderBy("number")->get()
             ]
         );
     }
@@ -29,9 +30,27 @@ class TurbineRepairController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request):RedirectResponse
     {
-        //
+        $validated = $request->validate([
+            "number" => ['nullable'],
+            "price" => ['nullable'],
+            "deadline"=> ['required'],
+            "note" => ['nullable'],
+            "turbine_id" => ['required'],
+            "client_id" => ['required'],
+            "order_status_id" => ['required'],
+        ]);
+
+        //dd($validated);
+
+        TurbineRepair::create([
+            ...$validated,
+            "number" => "100100100",
+            ]
+        );
+
+        return redirect()->back();
     }
 
     /**

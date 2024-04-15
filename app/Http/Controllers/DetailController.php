@@ -39,7 +39,7 @@ class DetailController extends Controller
         //dd($request);
         $validated = $request->validate([
             "number" => ['required'],
-            "description" => ['required'],
+            "description" => ['nullable'],
             "manufacturer_id" => ['required'],
             "detail_type_id" => ['required'],
         ]);

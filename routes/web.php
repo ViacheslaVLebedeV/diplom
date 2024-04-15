@@ -35,8 +35,8 @@ Route::resource("details", DetailController::class);
 Route::resource("purchases", PurchaseItemController::class);
 Route::resource("manufacturers", ManufacturerController::class);
 Route::resource("order-statuses", OrderStatusController::class);
-Route::resource("part-part-repairs", PartRepairController::class);
-Route::resource("turbine-part-repairs", TurbineRepairController::class);
+Route::resource("part-repairs", PartRepairController::class);
+Route::resource("turbine-repairs", TurbineRepairController::class);
 
 
 // Словари
@@ -44,6 +44,3 @@ Route::view("dictonaries", "dictonaries", [
     "order_statuses" => OrderStatus::simplePaginate(5),
     "manufacturers" => Manufacturer::all()
 ])->name("dictonaries");
-
-
-

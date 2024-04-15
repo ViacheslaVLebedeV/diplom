@@ -53,8 +53,8 @@ new class extends Component
                                 </button>
                             </x-slot>
 
-                            <x-dropdown.item separator label="Ремонт турбокомпресора" :href="route('turbine-part-repairs.index')" wire:navigate/>
-                            <x-dropdown.item separator label="Ремонт запчасти" :href="route('part-part-repairs.index')" wire:navigate/>
+                            <x-dropdown.item separator label="Ремонт турбокомпресора" :href="route('turbine-repairs.index')" wire:navigate/>
+                            <x-dropdown.item separator label="Ремонт запчасти" :href="route('part-repairs.index')" wire:navigate/>
                         </x-dropdown>
                     </div>
 

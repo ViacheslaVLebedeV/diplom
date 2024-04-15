@@ -13,7 +13,7 @@ class PartRepairController extends Controller
     public function index()
     {
         return view('part-repairs.index', [
-                "number" => PartRepair::query()->orderBy("number")->get()
+                "part_repairs" => PartRepair::query()->orderBy("number")->get()
             ]
         );
     }
@@ -31,7 +31,22 @@ class PartRepairController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'number' => ['nullable'],
+            'price' => ['required'],
+            'deadline' => ['required'],
+            'note' => ['nullable'],
+            'detail_id' => ['required'],
+            'client_id' => ['required'],
+            'order_status_id' => ['required'],
+        ]);
+
+        PartRepair::create([
+            ...$validated,
+            "number" => "1"
+        ]);
+
+        return redirect()->back();
     }
 
     /**
