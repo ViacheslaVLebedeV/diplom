@@ -2,7 +2,10 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            Узнать цену на деталь от поставщиков
+            Поставка детали:
+            <x-nav-link :href="route('details.index')" :active="request()->routeIs('details.index')" wire:navigate>
+                {{ __('Возврат') }}
+            </x-nav-link>
         </h2>
     </x-slot>
 
@@ -11,7 +14,7 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto space-y-6 sm:px-6 lg:px-8">
 
-            <x-card title="Деталь">
+            <x-card title="Запрашиваемая деталь">
                 <form action="{{ route("turbine-repairs.store") }}" method="POST" class="grid grid-cols-6 gap-6">
 
                     <div class="col-span-2">
@@ -31,7 +34,6 @@
             </x-card>
 
             <x-card title="Цены на деталь у поставщиков">
-
                 <x-table class="mt-3">
                     <x-slot:thead>
                         <x-th>Поставщик</x-th>
@@ -40,6 +42,12 @@
                         <x-th>Ссылка</x-th>
                     </x-slot:thead>
                     <x-slot:tbody>
+                        <tr>
+                            <t-td></t-td>
+                            <t-td></t-td>
+                            <t-td></t-td>
+                            <t-td></t-td>
+                        </tr>
                         <tr>
                             <x-td>СТ-ПАРТС</x-td>
                             <x-td>15000</x-td>

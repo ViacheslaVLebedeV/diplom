@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\DetailController;
+use App\Http\Controllers\DetailTurbineController;
 use App\Http\Controllers\DetailTypeController;
 use App\Http\Controllers\ManufacturerController;
 use App\Http\Controllers\OrderStatusController;
@@ -46,19 +47,28 @@ Route::resource("order-statuses", OrderStatusController::class);
 Route::resource("purchase-statuses", PurchaseStatusController::class);
 Route::resource("part-repairs", PartRepairController::class);
 Route::resource("turbine-repairs", TurbineRepairController::class);
+Route::resource("detail-turbines", DetailTurbineController::class);
 
 
+
+// ДЕТАЛИ:
 // Запрос цены детали у поставщика
-Route::view("price", "details.get-price")
+Route::view("get-price", "details.get-price")
     ->name("details.get-price");
+// Добавление связи с турбиной
+Route::view("add-to-turbine", "details.add-to-turbine")
+    ->name("details.add-to-turbine");
 
 
-// Отчётность
+
+// ОТЧЁТНОСТЬ:
 Route::view("turbine-report", "turbine-repairs.report")->name("turbine-repairs.report");
 Route::view("part-report", "part-repairs.report")->name("part-repairs.report");
 Route::view("purchase-report", "purchases.report")->name("purchases.report");
 
-// Словари
+
+
+// СЛОВАРИ:
 Route::view("dict", "dictionaries.main")->name("dictionaries.main");
 
 Route::view("dict/providers", "dictionaries.providers", [
