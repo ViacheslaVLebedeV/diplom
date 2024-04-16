@@ -1,7 +1,11 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            Детали
+            Детали:
+            <!-- Navigation Link -->
+            <x-nav-link :href="route('details.get-price')" :active="request()->routeIs('details.get-price')" wire:navigate>
+                {{ __('Узнать стоимость') }}
+            </x-nav-link>
         </h2>
     </x-slot>
 
@@ -89,7 +93,6 @@
                         <x-th>Производитель</x-th>
                         <x-th>Тип детали</x-th>
                         <x-th>Количество (шт.)</x-th>
-                        <x-th>Стоимость (руб.)</x-th>
                         <x-th>Описание</x-th>
                         <x-th>Действия</x-th>
                     </x-slot:thead>
@@ -100,7 +103,6 @@
                                 <x-td>{{ $detail->manufacturer->name }}</x-td>
                                 <x-td>{{ $detail->detailType->name }}</x-td>
                                 <x-td>{{ $detail->count }}</x-td>
-                                <x-td>{{ $detail->price }}</x-td>
                                 <x-td>{{ $detail->note }}</x-td>
                                 <x-td>
                                     <form action="{{ route("details.destroy", $detail->id) }}" method="POST">

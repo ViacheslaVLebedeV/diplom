@@ -62,7 +62,7 @@ new class extends Component
                         Закупки
                     </x-nav-link>
 
-                    <x-nav-link :href="route('dictonaries')" :active="request()->routeIs('dictonaries')" wire:navigate>
+                    <x-nav-link :href="route('dictionaries.main')" :active="request()->routeIs('dictionaries.main')" wire:navigate>
                         Справочники
                     </x-nav-link>
                 </div>

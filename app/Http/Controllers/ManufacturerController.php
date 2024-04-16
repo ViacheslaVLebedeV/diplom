@@ -12,7 +12,7 @@ class ManufacturerController extends Controller
      */
     public function index()
     {
-        return Manufacturer::all();
+        //
     }
 
     /**
@@ -28,7 +28,14 @@ class ManufacturerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            "name" => ['required'],
+            "note" => ['nullable']
+        ]);
+
+        Manufacturer::create($validated);
+
+        return redirect()->back();
     }
 
     /**
@@ -60,6 +67,7 @@ class ManufacturerController extends Controller
      */
     public function destroy(Manufacturer $manufacturer)
     {
-        //
+        $manufacturer->delete();
+        return redirect()->back();
     }
 }

@@ -27,7 +27,7 @@
                             placeholder="Выбрать производителя"/>
                     </div>
                     <div class="col-span-4">
-                        <x-textarea name="description" label="Описание" placeholder="Описание"/>
+                        <x-textarea name="note" label="Описание" placeholder="Описание"/>
                     </div>
                     <div class="col-span-6">
                         <x-button type="submit" label="Добавить" primary/>

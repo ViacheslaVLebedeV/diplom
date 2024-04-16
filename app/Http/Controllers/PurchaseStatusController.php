@@ -28,7 +28,13 @@ class PurchaseStatusController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            "name" => ['required']
+        ]);
+
+        PurchaseStatus::create($validated);
+
+        return redirect()->back();
     }
 
     /**
@@ -60,6 +66,7 @@ class PurchaseStatusController extends Controller
      */
     public function destroy(PurchaseStatus $purchaseStatus)
     {
-        //
+        $purchaseStatus->delete();
+        return redirect()->back();
     }
 }

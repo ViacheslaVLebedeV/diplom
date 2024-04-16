@@ -35,6 +35,7 @@
                     <div class="col-span-2">
                         <x-inputs.maskable
                             label="Номер телефона"
+                            name="phone"
                             mask="['+7-(###)-###-##-##']"
                             placeholder="Пример: +7-(999)-999-99-99"
                         />
@@ -48,7 +49,7 @@
                     </div>
 
                     <div class="col-span-4">
-                        <x-textarea name="description" label="Дополнительная информация" placeholder="Примечание"/>
+                        <x-textarea name="note" label="Дополнительная информация" placeholder="Примечание"/>
                     </div>
                     <div class="col-span-6">
                         <x-button type="submit" label="Добавить клиента" primary/>

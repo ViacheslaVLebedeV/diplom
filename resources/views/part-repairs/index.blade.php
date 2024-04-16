@@ -2,7 +2,11 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            Ремонт запасной части
+            Ремонт запасной части:
+            <!-- Navigation Link -->
+            <x-nav-link :href="route('part-repairs.report')" :active="request()->routeIs('part-repairs.report')" wire:navigate>
+                {{ __('Сформировать отчёт') }}
+            </x-nav-link>
         </h2>
     </x-slot>
 

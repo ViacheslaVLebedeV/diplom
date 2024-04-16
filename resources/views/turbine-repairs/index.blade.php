@@ -1,7 +1,11 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            Ремонт турбокомпрессора
+            Ремонт турбокомпрессора:
+            <!-- Navigation Link -->
+            <x-nav-link :href="route('turbine-repairs.report')" :active="request()->routeIs('turbine-repairs.report')" wire:navigate>
+                {{ __('Сформировать отчёт') }}
+            </x-nav-link>
         </h2>
     </x-slot>
 
@@ -129,9 +133,9 @@
                                 <x-td>{{ $turbine_repair->client->lastname }}</x-td>
                                 <x-td>{{ $turbine_repair->orderStatus->name }}</x-td>
                                 <x-td>
-                                    <form action="{{ route("turbine-repairs.destroy", $turbine_repair->id) }}" method="POST">
+                                    <form action="{{ route("turbine-repairs.update", $turbine_repair->id) }}" method="POST">
                                         @csrf
-                                        @method('DELETE')
+                                        @method('UPDATE')
                                         <x-button.circle type="submit" icon="pencil-alt" />
                                     </form>
                                 </x-td>

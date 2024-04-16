@@ -28,7 +28,14 @@ class DetailTypeController extends Controller
      */
     public function store(Request $request)
     {
-        return "Detail store request";
+        $validated = $request->validate([
+            "name" => ['required'],
+            "note" => ['nullable']
+        ]);
+
+        DetailType::create($validated);
+
+        return redirect()->back();
     }
 
     /**
@@ -60,6 +67,7 @@ class DetailTypeController extends Controller
      */
     public function destroy(DetailType $detailType)
     {
-        return "Detail delete request";
+        $detailType->delete();
+        return redirect()->back();
     }
 }

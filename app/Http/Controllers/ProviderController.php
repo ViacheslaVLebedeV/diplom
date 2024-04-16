@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Provider;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 class ProviderController extends Controller
@@ -12,7 +13,10 @@ class ProviderController extends Controller
      */
     public function index()
     {
-        //
+//        return view('providers.index', [
+//                "providers" => Provider::query()->orderBy("name")->get()
+//            ]
+//        );
     }
 
     /**
@@ -26,9 +30,17 @@ class ProviderController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
-        //
+        $validated = $request->validate([
+            "name" => ['required'],
+            "sku" => ['required'],
+            "note" => ['nullable']
+        ]);
+
+        Provider::create($validated);
+
+        return redirect()->back();
     }
 
     /**
@@ -60,6 +72,7 @@ class ProviderController extends Controller
      */
     public function destroy(Provider $provider)
     {
-        //
+        $provider->delete();
+        return redirect()->back();
     }
 }

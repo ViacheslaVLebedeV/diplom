@@ -35,9 +35,11 @@ class TurbineController extends Controller
     {
         //dd($request);
         $validated = $request->validate([
-                "number" => ['required'],
-                "manufacturer_id" => ['required'],
-            ]);
+            "number" => ['required'],
+            "note" => ['nullable'],
+            "manufacturer_id" => ['required'],
+        ]);
+
         Turbine::create([
             ...$validated
         ]);

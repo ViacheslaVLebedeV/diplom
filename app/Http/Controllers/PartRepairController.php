@@ -41,41 +41,37 @@ class PartRepairController extends Controller
             'order_status_id' => ['required'],
         ]);
 
+        $number = $this->generateOrderNumber(3, 4);
+
         PartRepair::create([
-            ...$validated,
-            "number" => "1"
-        ]);
+                ...$validated,
+                "number" => $number,
+            ]
+        );
 
         return redirect()->back();
     }
 
-    /**
-     * Display the specified resource.
-     */
+    public function generateOrderNumber($date, $id)
+    {
+        return $date + $id;
+    }
+
     public function show(PartRepair $partRepair)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(PartRepair $partRepair)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, PartRepair $partRepair)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(PartRepair $partRepair)
     {
         //
