@@ -32,7 +32,7 @@
                             <div class="col-span-1">
                                 <x-input label="Название"
                                          name="name"
-                                         placeholder="Пример: Картридж"/>
+                                         placeholder="Пример: Вал"/>
                             </div>
                             @csrf
                             <div class="col-span-4">
@@ -60,7 +60,7 @@
                                             <form action="{{ route("detail-types.destroy", $detail_type->id) }}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
-                                                <x-button.circle type="submit" negative icon="trash" />
+                                                <x-button.circle type="submit" none icon="pencil-alt" />
                                             </form>
                                         </x-td>
                                     </tr>

@@ -61,7 +61,7 @@
                                             <form action="{{ route("manufacturers.destroy", $manufacturer->id) }}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
-                                                <x-button.circle type="submit" negative icon="trash" />
+                                                <x-button.circle type="submit" none icon="pencil-alt" />
                                             </form>
                                         </x-td>
                                     </tr>
