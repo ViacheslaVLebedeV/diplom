@@ -9,15 +9,16 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto space-y-6 sm:px-6 lg:px-8">
             <x-card title="Параметры отчёта">
-                <form action="{{ route("purchases.index") }}" method="GET" class="grid grid-cols-6 gap-6">
+                <form action="{{ route("purchase-reports.store") }}" method="POST" class="grid grid-cols-6 gap-6">
+                    @csrf
                     <div class="col-span-2">
                         <x-datetime-picker
-                            without-time
+                            name="from"
                             label="Период с"/>
                     </div>
                     <div class="col-span-2">
                         <x-datetime-picker
-                            without-time
+                            name="to"
                             label="Период по"/>
                     </div>
                     <div class="col-span-2">

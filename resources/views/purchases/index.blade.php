@@ -4,7 +4,7 @@
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
             Закупки позиций:
             <!-- Navigation Link -->
-            <x-nav-link :href="route('purchases.report')" :active="request()->routeIs('purchases.report')"
+            <x-nav-link :href="route('purchase-reports.index')" :active="request()->routeIs('purchase-reports.index')"
                         wire:navigate>
                 {{ __('Сформировать отчёт') }}
             </x-nav-link>
@@ -15,7 +15,7 @@
         <div class="max-w-7xl mx-auto space-y-6 sm:px-6 lg:px-8">
             <x-card title="Добавить закупку">
                 <form action="{{ route("purchases.store") }}" method="POST" class="grid grid-cols-6 gap-6">
-
+                    @csrf
                     <div class="col-span-2">
                         <x-select
                             name="detail_id"
@@ -43,16 +43,15 @@
                             label="Статус закупки"
                             placeholder="Выбрать статус закупки"/>
                     </div>
-                    @csrf
+
                     <div class="col-span-2">
                         <x-input label="Цена позиции (в рублях)"
                                  name="price"
                                  placeholder="Пример: 10000 руб."/>
                     </div>
                     <div class="col-span-1">
-                        <x-inputs.number label="Количество позиций"/>
+                        <x-inputs.number name="count" label="Количество позиций"/>
                     </div>
-                    @csrf
                     <div class="col-span-4">
                         <x-textarea name="note" label="Дополнительная информация" placeholder="Примечание"/>
                     </div>

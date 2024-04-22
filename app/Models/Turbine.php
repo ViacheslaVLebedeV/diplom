@@ -26,8 +26,8 @@ class Turbine extends Model
         return $this->hasMany(TurbineRepair::class, 'turbine_id');
     }
 
-//    public function details(): BelongsToMany
-//    {
-//        return $this->belongsToMany(Detail::class)->withPivot(['note']);
-//    }
+    public function details(): BelongsToMany
+    {
+        return $this->belongsToMany(Detail::class)->withPivot(['note']);
+    }
 }

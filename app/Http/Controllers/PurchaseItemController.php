@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\PurchaseItem;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\View\View;
 
 class PurchaseItemController extends Controller
@@ -32,8 +33,9 @@ class PurchaseItemController extends Controller
      */
     public function store(Request $request)
     {
+
+
         $validated = $request->validate([
-            "number" => ['nullable'],
             "price" => ['required'],
             "count"=> ['required'],
             "note" => ['nullable'],
@@ -42,11 +44,14 @@ class PurchaseItemController extends Controller
             "purchase_status_id" => ['required'],
         ]);
 
-        $number = $this->generatePurchaseNumber(5, 6);
+        $number = $this->generatePurchaseNumber(Carbon::now()->toDateString(), PurchaseItem::count() + 1);
+
+
 
         PurchaseItem::create([
-                ...$validated,
                 "number" => $number,
+                ...$validated,
+
             ]
         );
 
@@ -55,7 +60,7 @@ class PurchaseItemController extends Controller
 
     public function generatePurchaseNumber($date, $id)
     {
-        return $date + $id;
+        return $date .  "-"  . $id;
     }
 
     /**
