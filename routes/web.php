@@ -50,7 +50,6 @@ Route::resource("turbine-repairs", TurbineRepairController::class);
 Route::resource("detail-turbines", DetailTurbineController::class);
 
 
-
 // ДЕТАЛИ:
 // Запрос цены детали у поставщика
 Route::view("get-price", "details.get-price")
@@ -60,8 +59,8 @@ Route::view("add-to-turbine", "details.add-to-turbine")
     ->name("details.add-to-turbine");
 
 
-
 // ОТЧЁТНОСТЬ:
+Route::post('purchase-rep', [PurchaseItemController::class, 'viewPDF'])->name('view-pdf');
 Route::view("turbine-report", "turbine-repairs.report")->name("turbine-repairs.report");
 Route::view("part-report", "part-repairs.report")->name("part-repairs.report");
 Route::view("purchase-report", "purchases.report")->name("purchases.report");

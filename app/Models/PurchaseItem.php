@@ -9,10 +9,12 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class PurchaseItem extends Model
 {
     protected $fillable = [
+        'number',
         'detail_id',
-        'manufacturer_id',
+        'provider_id',
         'purchase_status_id',
         'price',
+        'count',
         'note',
     ];
 
@@ -30,6 +32,4 @@ class PurchaseItem extends Model
     {
         return $this->belongsTo(PurchaseStatus::class);
     }
-
-
 }

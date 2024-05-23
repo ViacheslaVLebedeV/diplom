@@ -3,9 +3,9 @@
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
             Детали:
             <!-- Navigation Link -->
-            <x-nav-link :href="route('details.get-price')" :active="request()->routeIs('details.get-price')" wire:navigate>
-                {{ __('Поставка детали') }}
-            </x-nav-link>
+{{--            <x-nav-link :href="route('details.get-price')" :active="request()->routeIs('details.get-price')" wire:navigate>--}}
+{{--                {{ __('Поставка детали') }}--}}
+{{--            </x-nav-link>--}}
             <x-nav-link :href="route('detail-turbines.index')" :active="request()->routeIs('detail-turbines.index')" wire:navigate>
                 {{ __('Связь с турбокомпрессором') }}
             </x-nav-link>

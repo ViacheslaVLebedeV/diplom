@@ -9,7 +9,8 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto space-y-6 sm:px-6 lg:px-8">
             <x-card title="Параметры отчёта">
-                <form action="{{ route("purchases.index") }}" method="GET" class="grid grid-cols-6 gap-6">
+                <form action="{{ route("view-pdf") }}" method="POST" class="grid grid-cols-6 gap-6" target="_blank">
+                    @csrf
                     <div class="col-span-2">
                         <x-datetime-picker
                             without-time

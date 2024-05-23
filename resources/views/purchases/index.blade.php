@@ -50,7 +50,7 @@
                                  placeholder="Пример: 10000 руб."/>
                     </div>
                     <div class="col-span-1">
-                        <x-inputs.number label="Количество позиций"/>
+                        <x-inputs.number label="Количество позиций" name="count"/>
                     </div>
                     @csrf
                     <div class="col-span-4">
@@ -64,13 +64,12 @@
 
 
             <x-card title="Все закупки позиций">
-
-                <form action="{{ route("purchases.index") }}" method="GET" class="grid grid-cols-6 gap-6">
-
+                <form action="{{ route('purchases.store') }}" method="POST" class="grid grid-cols-6 gap-6">
+                    @csrf
                     <div class="col-span-2">
                         <x-select
                             name="detail_id"
-                            :options="Detail::all()"
+                            :options="$details"
                             option-label="number"
                             option-value="id"
                             label="Деталь"
@@ -79,7 +78,7 @@
                     <div class="col-span-2">
                         <x-select
                             name="provider_id"
-                            :options="Provider::all()"
+                            :options="$providers"
                             option-label="name"
                             option-value="id"
                             label="Поставщик"
@@ -88,13 +87,12 @@
                     <div class="col-span-2">
                         <x-select
                             name="purchase_status_id"
-                            :options="PurchaseStatus::all()"
+                            :options="$purchaseStatuses"
                             option-label="name"
                             option-value="id"
                             label="Статус закупки"
                             placeholder="Выбрать статус закупки"/>
                     </div>
-
                     <div class="col-span-6">
                         <x-button type="submit" label="Найти закупки" primary/>
                     </div>
@@ -120,10 +118,10 @@
                                 <x-td>{{ $purchase->provider->name }}</x-td>
                                 <x-td>{{ $purchase->purchaseStatus->name }}</x-td>
                                 <x-td>
-                                    <form action="{{ route("purchases.update", $purchase->id) }}"
+                                    <form action="{{ route('purchases.update', $purchase->id) }}"
                                           method="POST">
                                         @csrf
-                                        @method('UPDATE')
+                                        @method('PATCH')
                                         <x-button.circle type="submit" icon="pencil-alt"/>
                                     </form>
                                 </x-td>
@@ -137,6 +135,7 @@
                     @endif
                 </x-table>
             </x-card>
+
         </div>
     </div>
 

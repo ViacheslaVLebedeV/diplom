@@ -55,7 +55,7 @@ return array(
          *
          * Note: This directory must exist and be writable by the webserver process.
          */
-        "font_cache" => storage_path('fonts'),
+        "font_cache" => storage_path('fonts/'),
 
         /**
          * The location of a temporary directory.
@@ -186,7 +186,14 @@ return array(
          * Used if no suitable fonts can be found. This must exist in the font folder.
          * @var string
          */
-        "default_font" => "serif",
+        'default_font' => 'DejaVu Sans',
+        'font_data' => [
+            'dejavu sans' => [
+                'R' => 'DejaVuSans.ttf',
+                'B' => 'DejaVuSans-Bold.ttf',
+                'I' => 'DejaVuSans-Oblique.ttf',
+                'BI' => 'DejaVuSans-BoldOblique.ttf',
+            ],
 
         /**
          * Image DPI setting
@@ -277,7 +284,7 @@ return array(
          * @deprecated This feature is now always on in dompdf 2.x
          * @var bool
          */
-        "enable_html5_parser" => true,
+        "enable_html5_parser" => true,]
     ),
 
 

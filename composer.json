@@ -6,14 +6,14 @@
     "license": "MIT",
     "require": {
         "php": "^8.2",
+        "ext-http": "*",
         "barryvdh/laravel-dompdf": "^2.1",
         "laravel/breeze": "^2.0",
         "laravel/framework": "^11.0",
         "laravel/tinker": "^2.9",
         "livewire/livewire": "^3.4",
         "livewire/volt": "^1.0",
-        "wireui/wireui": "^1.19",
-        "ext-http": "*"
+        "wireui/wireui": "^1.19"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",
