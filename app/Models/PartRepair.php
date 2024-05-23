@@ -16,6 +16,8 @@ class PartRepair extends Model
         'detail_id',
         'client_id',
         'order_status_id',
+        'master_service_id',
+        'purchase_item_id'
     ];
 
     public function detail(): BelongsTo
@@ -31,5 +33,15 @@ class PartRepair extends Model
     public function orderStatus(): BelongsTo
     {
         return $this->belongsTo(OrderStatus::class);
+    }
+
+    public function masterService(): BelongsTo
+    {
+        return $this->belongsTo(MasterService::class);
+    }
+
+    public function purchaseItem(): BelongsTo
+    {
+        return $this->belongsTo(PurchaseItem::class);
     }
 }

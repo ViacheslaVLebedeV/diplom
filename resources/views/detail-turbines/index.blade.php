@@ -4,7 +4,7 @@
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
             Связь с турбокомпрессором:
             <x-nav-link :href="route('details.index')" :active="request()->routeIs('details.index')" wire:navigate>
-                {{ __('Возврат') }}
+                Возврат
             </x-nav-link>
         </h2>
     </x-slot>
@@ -16,10 +16,11 @@
 
             <x-card title="Добавить связь с турбокомпрессором">
                 <form action="{{ route("detail-turbines.store") }}" method="POST" class="grid grid-cols-6 gap-6">
+                    @csrf
                     <div class="col-span-2">
                         <x-select
                             name="turbine_id"
-                            :options="\App\Models\Turbine::all()"
+                            :options="$turbines"
                             option-label="number"
                             option-value="id"
                             option-description="note"
@@ -37,10 +38,6 @@
                             label="Запасная часть"
                             placeholder="Выбрать запчасть"/>
                     </div>
-                    @csrf
-                    <div class="col-span-4">
-                        <x-textarea name="note" label="Дополнительная информация" placeholder="Примечание"/>
-                    </div>
                     <div class="col-span-6">
                         <x-button type="submit" label="Добавить связь" primary/>
                     </div>
@@ -52,12 +49,12 @@
                 <form action="{{ route("detail-turbines.index") }}" method="GET" class="grid grid-cols-6 gap-6">
                     <div class="col-span-2">
                         <x-select
-                            name="detail_id"
-                            :options="Detail::all()"
+                            name="turbine_id"
+                            :options="$turbines"
                             option-label="number"
                             option-value="id"
-                            label="Деталь"
-                            placeholder="Выбрать деталь"/>
+                            label="Турбокомпрессор"
+                            placeholder="Выбрать турбокомпрессор"/>
                     </div>
 
                     <div class="col-span-6">
@@ -69,26 +66,27 @@
                     <x-slot:thead>
                         <x-th>Турбокомпрессор</x-th>
                         <x-th>Деталь</x-th>
-                        <x-th>Доп. информация</x-th>
-                        <x-th>Действия</x-th>
                     </x-slot:thead>
                     <x-slot:tbody>
-                        <tr>
-                            <t-td></t-td>
-                            <t-td></t-td>
-                            <t-td></t-td>
-                            <t-td></t-td>
-                        </tr>
-                        <tr>
-                            <x-td>1111-222-001</x-td>
-                            <x-td>1000-000-000</x-td>
-                            <x-td>Ресурс: ТУРБОНАЙЗЕР</x-td>
-                            <x-td>
-                                <form method="POST">
-                                    <x-button.circle type="submit" none icon="pencil-alt" />
-                                </form>
-                            </x-td>
-                        </tr>
+                       @foreach($turbines as $turbine)
+                            <tr>
+                                <x-td>{{ $turbine->number }}</x-td>
+                                <x-td class="text-center">
+                                    <ul class="space-y-2">
+                                        @foreach($turbine->details as $detail)
+                                            <li class="flex items-center justify-around" >
+                                                {{ $detail->number }}
+                                                <form  method="POST">
+                                                    @method('DELETE')
+                                                    @csrf
+                                                    <x-button.circle color="negative" type="submit" icon="trash" />
+                                                </form>
+                                            </li>
+                                        @endforeach
+                                    </ul>
+                                </x-td>
+                            </tr>
+                       @endforeach
                     </x-slot:tbody>
                 </x-table>
             </x-card>

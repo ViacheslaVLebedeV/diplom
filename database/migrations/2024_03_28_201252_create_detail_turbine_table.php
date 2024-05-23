@@ -23,7 +23,6 @@ return new class extends Migration
                 ->constrained()
                 ->cascadeOnUpdate()
                 ->cascadeOnDelete();
-            $table->text("note")->nullable();
             $table->timestamps();
         });
     }
