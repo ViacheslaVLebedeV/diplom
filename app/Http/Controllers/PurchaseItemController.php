@@ -9,6 +9,7 @@ use App\Models\PurchaseStatus;
 use Exception;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\View\View;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\Cache;
@@ -26,12 +27,45 @@ class PurchaseItemController extends Controller
         );
     }
 
-    public function viewPDF()
+    public function purchasePDF(Request $request)
     {
+        // Получение данных из запроса
+        $startDate = $request->input('start_date');
+        $endDate = $request->input('end_date');
+        $providerId = $request->input('provider_id');
+        $purchaseStatusId = $request->input('purchase_status_id');
+
+        // Преобразование дат в формат YYYY-MM-DD
+        if ($startDate) {
+            $startDate = Carbon::createFromFormat('d.m.Y', $startDate)->format('Y-m-d');
+        }
+        if ($endDate) {
+            $endDate = Carbon::createFromFormat('d.m.Y', $endDate)->format('Y-m-d');
+        }
+
+        // Формирование запроса с фильтрацией
+        $query = PurchaseItem::query();
+
+        if ($startDate) {
+            $query->whereRaw('DATE(created_at) >= ?', [$startDate]);
+        }
+
+        if ($endDate) {
+            $query->whereRaw('DATE(created_at) <= ?', [$endDate]);
+        }
+        if ($providerId) {
+            $query->where('provider_id', $providerId);
+        }
+        if ($purchaseStatusId) {
+            $query->where('purchase_status_id', $purchaseStatusId);
+        }
+
+        $filtered_purchases = $query->get();
+
         $number = $this->generateReportNumber();
-        $accepted = $this->calculate_accepted();
-        $cancelled = $this->calculate_cancelled();
-        $total_money = $this->calculate_money();
+        $accepted = $this->calculate_accepted($filtered_purchases);
+        $cancelled = $this->calculate_cancelled($filtered_purchases);
+        $total_money = $this->calculate_money($filtered_purchases);
 
         $data = [
             'number' => $number,
@@ -39,17 +73,17 @@ class PurchaseItemController extends Controller
             'cancelled' => $cancelled,
             'total_money' => $total_money,
             'reportDate' => now()->format('d.m.y'),
-            'purchases' => PurchaseItem::all(),
+            'purchases' => $filtered_purchases,
         ];
 
-        $pdf = PDF::loadView('purchases.pdf', compact('data'));
-
+        $pdf = PDF::loadView('purchases.pdf', compact('data'))
+        ->setPaper('a4', 'landscape');
         return $pdf->stream();
     }
 
-    public function calculate_money(): float
+    public function calculate_money($filtered_purchases): float
     {
-        $totalMoney = PurchaseItem::all()->sum(function ($purchaseItem) {
+        $totalMoney = $filtered_purchases->sum(function ($purchaseItem) {
             return $purchaseItem->price * $purchaseItem->count;
         });
 
@@ -61,7 +95,7 @@ class PurchaseItemController extends Controller
         $date = now()->format('d.m.y'); // Получаем текущую дату в формате ДД.ММ.ГГ
 
         // Получаем ключ для хранения последнего номера за текущий день
-        $cacheKey = "turbine_repair_number_{$date}";
+        $cacheKey = "purchase_report_number_{$date}";
 
         // Получаем последний номер из кэша, если он существует
         $lastNumber = Cache::get($cacheKey, 0);
@@ -83,10 +117,10 @@ class PurchaseItemController extends Controller
         return "$date-2-$formattedNumber";
     }
 
-    public function calculate_accepted(): float
+    public function calculate_accepted($filtered_purchases): float
     {
-        // Получаем общее количество записей
-        $totalRecords = PurchaseItem::count();
+        // Получаем общее количество отфильтрованных записей
+        $totalRecords = $filtered_purchases->count();
 
         // Получаем статус "Принята"
         $acceptedStatus = PurchaseStatus::where('name', 'Принята')->first();
@@ -95,35 +129,35 @@ class PurchaseItemController extends Controller
         $acceptedRecords = 0;
 
         if ($acceptedStatus) {
-            // Получаем количество записей со статусом "Принята"
-            $acceptedRecords = PurchaseItem::where('purchase_status_id', $acceptedStatus->id)->count();
+            // Получаем количество отфильтрованных записей со статусом "Принята"
+            $acceptedRecords = $filtered_purchases->where('purchase_status_id', $acceptedStatus->id)->count();
         }
 
         // Вычисляем результат деления меньшего числа на большее
-        $ratio = $totalRecords > 0 ? $acceptedRecords / $totalRecords: 0;
+        $ratio = $totalRecords > 0 ? $acceptedRecords / $totalRecords : 0;
 
         // Округляем до 2 знаков после запятой
         return round($ratio, 2);
     }
 
-    public function calculate_cancelled(): float
+    public function calculate_cancelled($filtered_purchases): float
     {
-        // Получаем общее количество записей
-        $totalRecords = PurchaseItem::count();
+        // Получаем общее количество отфильтрованных записей
+        $totalRecords = $filtered_purchases->count();
 
         // Получаем статус "Отменена"
         $cancelledStatus = PurchaseStatus::where('name', 'Отменена')->first();
 
-        // Если статус "Отменена" не найден, устанавливаем count принятых записей в 0
+        // Если статус "Отменена" не найден, устанавливаем count отменённых записей в 0
         $cancelledRecords = 0;
 
         if ($cancelledStatus) {
-            // Получаем количество записей со статусом "Отменена"
-            $cancelledRecords = PurchaseItem::where('purchase_status_id', $cancelledStatus->id)->count();
+            // Получаем количество отфильтрованных записей со статусом "Отменена"
+            $cancelledRecords = $filtered_purchases->where('purchase_status_id', $cancelledStatus->id)->count();
         }
 
         // Вычисляем результат деления меньшего числа на большее
-        $ratio = $totalRecords > 0 ? $cancelledRecords / $totalRecords: 0;
+        $ratio = $totalRecords > 0 ? $cancelledRecords / $totalRecords : 0;
 
         // Округляем до 2 знаков после запятой
         return round($ratio, 2);

@@ -3,21 +3,27 @@
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
             Отчёт по ремонту турбокомпрессоров
+            <x-nav-link :href="route('turbine-repairs.index')" :active="request()->routeIs('turbine-repairs.index')" wire:navigate>
+                Возврат
+            </x-nav-link>
         </h2>
     </x-slot>
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto space-y-6 sm:px-6 lg:px-8">
             <x-card title="Параметры отчёта">
-                <form action="{{ route("turbine-repairs.index") }}" method="GET" class="grid grid-cols-6 gap-6">
+                <form action="{{ route("turbine-repair-pdf") }}" method="POST" class="grid grid-cols-6 gap-6" target="_blank">
+                    @csrf
                     <div class="col-span-2">
                         <x-datetime-picker
                             without-time
+                            name="start_date"
                             label="Период с"/>
                     </div>
                     <div class="col-span-2">
                         <x-datetime-picker
                             without-time
+                            name="end_date"
                             label="Период по"/>
                     </div>
                     <div class="col-span-3">

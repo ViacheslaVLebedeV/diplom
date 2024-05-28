@@ -58,12 +58,17 @@ Route::view("get-price", "details.get-price")
 Route::view("add-to-turbine", "details.add-to-turbine")
     ->name("details.add-to-turbine");
 
-
-// ОТЧЁТНОСТЬ:
-Route::post('purchase-rep', [PurchaseItemController::class, 'viewPDF'])->name('view-pdf');
-Route::view("turbine-report", "turbine-repairs.report")->name("turbine-repairs.report");
-Route::view("part-report", "part-repairs.report")->name("part-repairs.report");
+// ОТЧЁТ ПО ЗАКУПКАМ
 Route::view("purchase-report", "purchases.report")->name("purchases.report");
+Route::post('purchase-pdf', [PurchaseItemController::class, 'purchasePDF'])->name('purchase-pdf');
+
+// ОТЧЁТ ПО РЕМОНТУ ТУРБИН
+Route::view("turbine-report", "turbine-repairs.report")->name("turbine-repairs.report");
+Route::post('turbine-repair-pdf', [TurbineRepairController::class, 'turbineRepairPDF'])->name('turbine-repair-pdf');
+
+// ОТЧЁТ ПО РЕМОНТУ ЗАПЧАСТЕЙ
+Route::view("part-report", "part-repairs.report")->name("part-repairs.report");
+Route::post('part-repair-pdf', [PartRepairController::class, 'partRepairPDF'])->name('part-repair-pdf');
 
 
 

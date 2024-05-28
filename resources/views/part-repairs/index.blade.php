@@ -27,6 +27,7 @@
                     <div class="col-span-2">
                         <x-datetime-picker
                             label="Крайний срок"
+                            name="deadline"
                             placeholder="Пример: 16.04.2024 10:00"
                             parse-format="DD-MM-YYYY HH:mm"
                             wire:model.defer="normalPicker"
@@ -64,7 +65,7 @@
                     </div>
 
                     <div class="col-span-4">
-                        <x-textarea name="description" label="Дополнительная информация по заказу"
+                        <x-textarea name="note" label="Дополнительная информация по заказу"
                                     placeholder="Примечание"/>
                     </div>
                     <div class="col-span-6">

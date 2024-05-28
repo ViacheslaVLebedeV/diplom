@@ -775,7 +775,6 @@
                                         <x-th>Дата создания</x-th>
                                         <x-th>Турбокомпрессор</x-th>
                                         <x-th>Статус заказа</x-th>
-                                        <x-th>Дата посл. обновления</x-th>
                                         <x-th>Клиент</x-th>
                                         <x-th>Стоимость (руб.)</x-th>
                                         <x-th>Срок исполнения</x-th>
@@ -790,30 +789,8 @@
                                             <x-td></x-td>
                                             <x-td></x-td>
                                             <x-td></x-td>
-                                            <x-td></x-td>
                                         </tr>
                                         <tr>
-                                            <x-td></x-td>
-                                            <x-td></x-td>
-                                            <x-td></x-td>
-                                            <x-td></x-td>
-                                            <x-td></x-td>
-                                            <x-td></x-td>
-                                            <x-td></x-td>
-                                            <x-td></x-td>
-                                        </tr>
-                                        <tr>
-                                            <x-td></x-td>
-                                            <x-td></x-td>
-                                            <x-td></x-td>
-                                            <x-td></x-td>
-                                            <x-td></x-td>
-                                            <x-td></x-td>
-                                            <x-td></x-td>
-                                            <x-td></x-td>
-                                        </tr>
-                                        <tr>
-                                            <x-td></x-td>
                                             <x-td></x-td>
                                             <x-td></x-td>
                                             <x-td></x-td>
@@ -865,7 +842,6 @@
                                         <x-th>Дата создания</x-th>
                                         <x-th>Деталь</x-th>
                                         <x-th>Статус заказа</x-th>
-                                        <x-th>Дата посл. обновления</x-th>
                                         <x-th>Клиент</x-th>
                                         <x-th>Стоимость (руб.)</x-th>
                                         <x-th>Срок исполнения</x-th>
@@ -880,30 +856,8 @@
                                             <x-td></x-td>
                                             <x-td></x-td>
                                             <x-td></x-td>
-                                            <x-td></x-td>
                                         </tr>
                                         <tr>
-                                            <x-td></x-td>
-                                            <x-td></x-td>
-                                            <x-td></x-td>
-                                            <x-td></x-td>
-                                            <x-td></x-td>
-                                            <x-td></x-td>
-                                            <x-td></x-td>
-                                            <x-td></x-td>
-                                        </tr>
-                                        <tr>
-                                            <x-td></x-td>
-                                            <x-td></x-td>
-                                            <x-td></x-td>
-                                            <x-td></x-td>
-                                            <x-td></x-td>
-                                            <x-td></x-td>
-                                            <x-td></x-td>
-                                            <x-td></x-td>
-                                        </tr>
-                                        <tr>
-                                            <x-td></x-td>
                                             <x-td></x-td>
                                             <x-td></x-td>
                                             <x-td></x-td>
