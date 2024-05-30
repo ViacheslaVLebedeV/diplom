@@ -31,6 +31,25 @@ class Client extends Model
 
     public function fullname()
     {
-        return "TEST";
+        // Инициализируем переменную для хранения полного имени
+        $fullName = $this->lastname;
+
+        // Добавляем переход на новую строку
+        $fullName .= "\n";
+
+        // Добавляем имя
+        $fullName .= $this->firstname;
+
+        // Добавляем переход на новую строку
+        $fullName .= "\n";
+
+        // Проверяем, есть ли у клиента отчество
+        if ($this->middlename) {
+            // Если отчество есть, добавляем его к полному имени
+            $fullName .= $this->middlename;
+        }
+
+        // Возвращаем полное имя клиента
+        return $fullName;
     }
 }

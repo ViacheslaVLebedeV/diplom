@@ -21,6 +21,4 @@ class Manufacturer extends Model
     {
         return $this->hasMany(Detail::class);
     }
-
-
 }

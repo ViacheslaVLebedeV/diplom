@@ -132,9 +132,10 @@
             <th>Номер детали</th>
             <th>Количество (шт.)</th>
             <th>Стоимость (руб.)</th>
+            <th>Статус закупки</th>
             <th>Производитель детали</th>
             <th>Поставщик</th>
-            <th>Дополнительно</th>
+            <th>Примечание</th>
         </tr>
         </thead>
         <tbody>
@@ -145,6 +146,7 @@
                 <td>{{ $purchase->detail->number }}</td>
                 <td>{{ $purchase->count }}</td>
                 <td>{{ $purchase->price }}</td>
+                <td>{{ $purchase->purchaseStatus->name }}</td>
                 <td>{{ $purchase->detail->manufacturer->name }}</td>
                 <td>{{ $purchase->provider->name }}</td>
                 <td>{{ $purchase->note }}</td>

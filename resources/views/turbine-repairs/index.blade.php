@@ -46,10 +46,11 @@
                     <div class="col-span-2">
                         <x-select
                             name="client_id"
-                            :options="\App\Models\Client::all()"
-                            option-label="lastname"
+                            :options="\App\Models\Client::all()->map(function ($client) {
+                                return ['id' => $client->id, 'name' => $client->fullname()];
+                            })->toArray()"
+                            option-label="name"
                             option-value="id"
-                            option-description="firstname"
                             label="Клиент"
                             placeholder="Выбрать клиента"/>
                     </div>
@@ -91,8 +92,10 @@
                     <div class="col-span-2">
                         <x-select
                             name="client_id"
-                            :options="\App\Models\Client::all()"
-                            option-label="lastname"
+                            :options="\App\Models\Client::all()->map(function ($client) {
+                                return ['id' => $client->id, 'name' => $client->fullname()];
+                            })->toArray()"
+                            option-label="name"
                             option-value="id"
                             label="Клиент"
                             placeholder="Выбрать клиента"/>
@@ -130,7 +133,7 @@
                                 <x-td>{{ $turbine_repair->price }}</x-td>
                                 <x-td>{{ $turbine_repair->deadline }}</x-td>
                                 <x-td>{{ $turbine_repair->turbine->number }}</x-td>
-                                <x-td>{{ $turbine_repair->client->lastname }}</x-td>
+                                <x-td>{{ $turbine_repair->client->fullname() }}</x-td>
                                 <x-td>{{ $turbine_repair->orderStatus->name }}</x-td>
                                 <x-td>
                                     <form action="{{ route("turbine-repairs.update", $turbine_repair->id) }}" method="POST">

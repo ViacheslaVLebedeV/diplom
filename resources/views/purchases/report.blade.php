@@ -59,9 +59,10 @@
                         <x-th>Номер детали</x-th>
                         <x-th>Количество (шт.)</x-th>
                         <x-th>Стоимость (руб.)</x-th>
+                        <x-th>Статус закупки</x-th>
                         <x-th>Производитель детали</x-th>
                         <x-th>Поставщик</x-th>
-                        <x-th>Дополнительно</x-th>
+                        <x-th>Примечание</x-th>
                     </x-slot:thead>
                     <x-slot:tbody>
                         <tr>
@@ -74,8 +75,10 @@
                             <x-td></x-td>
                             <x-td></x-td>
                             <x-td></x-td>
+                            <x-td></x-td>
                         </tr>
                         <tr>
+                            <x-td></x-td>
                             <x-td></x-td>
                             <x-td></x-td>
                             <x-td></x-td>

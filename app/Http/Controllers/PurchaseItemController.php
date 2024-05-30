@@ -69,8 +69,8 @@ class PurchaseItemController extends Controller
 
         $data = [
             'number' => $number,
-            'accepted' => $accepted,
-            'cancelled' => $cancelled,
+            'accepted' => $accepted * 100,
+            'cancelled' => $cancelled * 100,
             'total_money' => $total_money,
             'reportDate' => now()->format('d.m.y'),
             'purchases' => $filtered_purchases,

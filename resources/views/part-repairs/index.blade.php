@@ -40,15 +40,17 @@
                             :options="Detail::all()"
                             option-label="number"
                             option-value="id"
-                            label="Запасная часть"
-                            placeholder="Выбрать запчасть"/>
+                            label="Деталь"
+                            placeholder="Выбрать деталь"/>
                     </div>
 
                     <div class="col-span-2">
                         <x-select
                             name="client_id"
-                            :options="Client::all()"
-                            option-label="lastname"
+                            :options="\App\Models\Client::all()->map(function ($client) {
+                                return ['id' => $client->id, 'name' => $client->fullname()];
+                            })->toArray()"
+                            option-label="name"
                             option-value="id"
                             label="Клиент"
                             placeholder="Выбрать клиента"/>
@@ -92,8 +94,10 @@
                     <div class="col-span-2">
                         <x-select
                             name="client_id"
-                            :options="Client::all()"
-                            option-label="lastname"
+                            :options="\App\Models\Client::all()->map(function ($client) {
+                                return ['id' => $client->id, 'name' => $client->fullname()];
+                            })->toArray()"
+                            option-label="name"
                             option-value="id"
                             label="Клиент"
                             placeholder="Выбрать клиента"/>
@@ -131,7 +135,7 @@
                                 <x-td>{{ $part_repair->price }}</x-td>
                                 <x-td>{{ $part_repair->deadline }}</x-td>
                                 <x-td>{{ $part_repair->detail->number }}</x-td>
-                                <x-td>{{ $part_repair->client->lastname }}</x-td>
+                                <x-td>{{ $part_repair->client->fullname() }}</x-td>
                                 <x-td>{{ $part_repair->orderStatus->name }}</x-td>
                                 <x-td>
                                     <form action="{{ route("part-repairs.destroy", $part_repair->id) }}" method="POST">

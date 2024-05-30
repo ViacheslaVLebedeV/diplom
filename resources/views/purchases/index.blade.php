@@ -13,6 +13,7 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto space-y-6 sm:px-6 lg:px-8">
+            <x-dialog z-index="z-50" blur="md" align="center" />
             <x-card title="Добавить закупку">
                 <form action="{{ route("purchases.store") }}" method="POST" class="grid grid-cols-6 gap-6">
 

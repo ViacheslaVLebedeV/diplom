@@ -29,10 +29,11 @@
                     <div class="col-span-3">
                         <x-select
                             name="client_id"
-                            :options="Client::all()"
-                            option-label="lastname"
+                            :options="\App\Models\Client::all()->map(function ($client) {
+                                return ['id' => $client->id, 'name' => $client->fullname()];
+                            })->toArray()"
+                            option-label="name"
                             option-value="id"
-                            option-description="firstname"
                             label="Клиент"
                             placeholder="Выбрать клиента"/>
                     </div>
@@ -52,10 +53,10 @@
 
                 <x-table>
                     <x-slot:thead>
-                        <x-th>Номер</x-th>
-                        <x-th>Запчасть</x-th>
-                        <x-th>Клиент</x-th>
+                        <x-th>Дата создания</x-th>
+                        <x-th>Запасная часть</x-th>
                         <x-th>Статус заказа</x-th>
+                        <x-th>Клиент</x-th>
                         <x-th>Стоимость (руб.)</x-th>
                         <x-th>Срок исполнения</x-th>
                         <x-th>Примечание</x-th>

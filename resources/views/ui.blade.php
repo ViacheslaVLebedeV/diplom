@@ -687,9 +687,10 @@
                                         <x-th>Номер детали</x-th>
                                         <x-th>Количество (шт.)</x-th>
                                         <x-th>Стоимость (руб.)</x-th>
+                                        <x-th>Статус закупки</x-th>
                                         <x-th>Производитель детали</x-th>
                                         <x-th>Поставщик</x-th>
-                                        <x-th>Дополнительно</x-th>
+                                        <x-th>Примечание</x-th>
                                     </x-slot:thead>
                                     <x-slot:tbody>
                                         <tr>
@@ -701,28 +702,10 @@
                                             <x-td></x-td>
                                             <x-td></x-td>
                                             <x-td></x-td>
-                                        </tr>
-                                        <tr>
-                                            <x-td></x-td>
-                                            <x-td></x-td>
-                                            <x-td></x-td>
-                                            <x-td></x-td>
-                                            <x-td></x-td>
-                                            <x-td></x-td>
-                                            <x-td></x-td>
                                             <x-td></x-td>
                                         </tr>
                                         <tr>
                                             <x-td></x-td>
-                                            <x-td></x-td>
-                                            <x-td></x-td>
-                                            <x-td></x-td>
-                                            <x-td></x-td>
-                                            <x-td></x-td>
-                                            <x-td></x-td>
-                                            <x-td></x-td>
-                                        </tr>
-                                        <tr>
                                             <x-td></x-td>
                                             <x-td></x-td>
                                             <x-td></x-td>
@@ -778,7 +761,7 @@
                                         <x-th>Клиент</x-th>
                                         <x-th>Стоимость (руб.)</x-th>
                                         <x-th>Срок исполнения</x-th>
-                                        <x-th>Описание</x-th>
+                                        <x-th>Примечание</x-th>
                                     </x-slot:thead>
                                     <x-slot:tbody>
                                         <tr>
@@ -809,7 +792,7 @@
 
                 <!-- Отчеты по клиентам запчасти -->
                 <div class="col-span-6">
-                    <x-card title="Отчёт по ремонту запчасти">
+                    <x-card title="Отчёт по ремонту запасных частей">
                         <div class="space-y-4">
                             <div class="grid grid-cols-6 gap-6">
                                 <div class="col-span-2">
@@ -840,12 +823,12 @@
                                 <x-table>
                                     <x-slot:thead>
                                         <x-th>Дата создания</x-th>
-                                        <x-th>Деталь</x-th>
+                                        <x-th>Запасная часть</x-th>
                                         <x-th>Статус заказа</x-th>
                                         <x-th>Клиент</x-th>
                                         <x-th>Стоимость (руб.)</x-th>
                                         <x-th>Срок исполнения</x-th>
-                                        <x-th>Описание</x-th>
+                                        <x-th>Примечание</x-th>
                                     </x-slot:thead>
                                     <x-slot:tbody>
                                         <tr>

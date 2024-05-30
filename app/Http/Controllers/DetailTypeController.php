@@ -12,7 +12,9 @@ class DetailTypeController extends Controller
      */
     public function index()
     {
-        return "Detail index page";
+        $detailTypes = DetailType::all()->pluck('name', 'id');
+
+        return response()->json($detailTypes);
     }
 
     /**

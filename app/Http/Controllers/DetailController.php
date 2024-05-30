@@ -65,7 +65,7 @@ class DetailController extends Controller
      */
     public function edit(Detail $detail)
     {
-        //
+        return view('details.edit', compact('detail'));
     }
 
     /**
@@ -73,7 +73,16 @@ class DetailController extends Controller
      */
     public function update(Request $request, Detail $detail)
     {
-        //
+        $validated = $request->validate([
+            "number" => ['required'],
+            "note" => ['nullable'],
+            "manufacturer_id" => ['required'],
+            "detail_type_id" => ['required'],
+        ]);
+
+        $detail->update($validated);
+
+        return redirect()->route('details.index')->with('success', 'Detail updated successfully.');
     }
 
     /**

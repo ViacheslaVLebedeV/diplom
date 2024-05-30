@@ -142,7 +142,7 @@
             <th>Клиент</th>
             <th>Стоимость (руб.)</th>
             <th>Срок исполнения</th>
-            <th>Описание</th>
+            <th>Примечание</th>
         </tr>
         </thead>
         <tbody>
@@ -151,7 +151,7 @@
                 <td>{{ $repair->created_at->format('d.m.Y') }}</td>
                 <td>{{ $repair->turbine->number }}</td>
                 <td>{{ $repair->orderStatus->name }}</td>
-                <td>{{ $repair->client->lastname }}</td>
+                <td>{{ $repair->client->fullname() }}</td>
                 <td>{{ $repair->price }}</td>
                 <td>{{ $repair->deadline }}</td>
                 <td>{{ $repair->note }}</td>

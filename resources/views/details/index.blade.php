@@ -2,10 +2,6 @@
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
             Детали:
-            <!-- Navigation Link -->
-{{--            <x-nav-link :href="route('details.get-price')" :active="request()->routeIs('details.get-price')" wire:navigate>--}}
-{{--                {{ __('Поставка детали') }}--}}
-{{--            </x-nav-link>--}}
             <x-nav-link :href="route('detail-turbines.index')" :active="request()->routeIs('detail-turbines.index')" wire:navigate>
                 {{ __('Связь с турбокомпрессором') }}
             </x-nav-link>
@@ -26,7 +22,6 @@
                                  placeholder="Пример: 1000-000-000"/>
                     </div>
                     <div class="col-span-2">
-
                         <x-select
                             name="manufacturer_id"
                             :options="\App\Models\Manufacturer::all()"
@@ -53,9 +48,7 @@
                 </form>
             </x-card>
 
-
             <x-card title="Все детали">
-
                 <form action="{{ route("details.index") }}" method="GET" class="grid grid-cols-6 gap-6">
                     @csrf
                     <div class="col-span-2">
@@ -63,7 +56,15 @@
                                  name="number"
                                  placeholder="Пример: 1000-000-000"/>
                     </div>
-
+                    <div class="col-span-2">
+                        <x-select
+                            name="manufacturer_id"
+                            :options="\App\Models\Manufacturer::all()"
+                            option-label="name"
+                            option-value="id"
+                            label="Производитель"
+                            placeholder="Выбрать производителя"/>
+                    </div>
                     <div class="col-span-2">
                         <x-select
                             name="detail_type_id"
@@ -73,18 +74,6 @@
                             option-value="id"
                             placeholder="Выбрать тип"/>
                     </div>
-
-                    <div class="col-span-2">
-
-                        <x-select
-                            name="manufacturer_id"
-                            :options="\App\Models\Manufacturer::all()"
-                            option-label="name"
-                            option-value="id"
-                            label="Производитель"
-                            placeholder="Выбрать производителя"/>
-                    </div>
-
                     <div class="col-span-6">
                         <x-button type="submit" label="Найти" primary/>
                     </div>
@@ -108,11 +97,9 @@
                                 <x-td>{{ $detail->count }}</x-td>
                                 <x-td>{{ $detail->note }}</x-td>
                                 <x-td>
-                                    <form action="{{ route("details.destroy", $detail->id) }}" method="POST">
-                                        @csrf
-                                        @method('DELETE')
-                                        <x-button.circle type="submit" icon="pencil-alt" />
-                                    </form>
+                                    <a href="{{ route('details.edit', $detail) }}">
+                                        <x-button circle icon="pencil-alt"/>
+                                    </a>
                                 </x-td>
                             </tr>
                         @endforeach

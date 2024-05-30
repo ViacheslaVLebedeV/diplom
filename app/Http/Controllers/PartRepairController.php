@@ -64,11 +64,11 @@ class PartRepairController extends Controller
 
         $data = [
             'number' => $number,
-            'done' => $done,
-            'done_before' => $done_before,
-            'done_after' => $done_after,
-            'bad' => $bad,
-            'cancelled' => $cancelled,
+            'done' => $done * 100,
+            'done_before' => $done_before * 100,
+            'done_after' => $done_after * 100,
+            'bad' => $bad * 100,
+            'cancelled' => $cancelled * 100,
             'total_money' => $total_money,
             'reportDate' => now()->format('d.m.y'),
             'repairs' => $filtered_repairs,
